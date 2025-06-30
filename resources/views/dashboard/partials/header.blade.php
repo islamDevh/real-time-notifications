@@ -8,7 +8,9 @@
         <li class="nav-item nav-notif">
             <a class="nav-link text-muted my-2 notificationsIcon" href="./#" data-toggle="modal" data-target=".modal-notif">
                 <span class="fe fe-bell fe-16"></span>
-                <span class="dot dot-md text-danger">{{ count(Auth::guard('admin')->user()->unreadNotifications) }}</span>
+                <span class="dot dot-md text-danger" id="notifCount">
+                    {{ count(Auth::guard('admin')->user()->unreadNotifications) }}
+                </span>
             </a>
         </li>
 

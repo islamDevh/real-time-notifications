@@ -25,4 +25,29 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/css/app-light.css" id="lightTheme">
     <link rel="stylesheet" href="{{ asset('assets') }}/css/app-dark.css" id="darkTheme" disabled>
     @stack('styles')
+
+    <script src="https://js.pusher.com/8.4.0/pusher.min.js"></script>
+    <script>
+        Pusher.logToConsole = false;
+
+        var pusher = new Pusher('{{ env('PUSHER_APP_KEY') }}', {
+            cluster: 'ap2'
+        });
+
+        var channel = pusher.subscribe('new_user_channel');
+
+        channel.bind('App\\Events\\NewUserRegisterEvent', function(data) {
+            console.log("New notification received:", data);
+
+            // Get current count from the span
+            const countElement = document.getElementById('notifCount');
+            let currentCount = parseInt(countElement.textContent.trim()) || 0;
+
+            // Increment count
+            countElement.textContent = currentCount + 1;
+
+            // Optional: You may also dynamically add the notification to the modal list if needed
+        });
+    </script>
+
 </head>
