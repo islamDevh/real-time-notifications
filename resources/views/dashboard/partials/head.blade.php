@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/css/app-dark.css" id="darkTheme" disabled>
     @stack('styles')
 
-    <script src="https://js.pusher.com/8.4.0/pusher.min.js"></script>
+    {{-- <script src="https://js.pusher.com/8.4.0/pusher.min.js"></script>
     <script>
         Pusher.logToConsole = false;
 
@@ -46,8 +46,7 @@
             // Increment count
             countElement.textContent = currentCount + 1;
 
-            // Optional: You may also dynamically add the notification to the modal list if needed
         });
-    </script>
-
+    </script> --}}
+    @vite('resources/js/bootstrap.js')
 </head>
