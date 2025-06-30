@@ -24,7 +24,8 @@ class NewUserRegisterEvent implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new Channel('new_user_channel'),
+            // new Channel('new_user_channel'),
+            new PrivateChannel('new_user_channel'),
         ];
     }
 }

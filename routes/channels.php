@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
-});
+// Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
+//     return (int) $user->id === (int) $id;
+// });
+
+
+Broadcast::channel('new_user_channel', function ($user) {
+    // return true; // or add your own logic, it should return true value
+    return $user->type == 'super_admin'; // or add your own logic, it should return true value
+}, ['guards' => ['admin']]);

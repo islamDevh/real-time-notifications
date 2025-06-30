@@ -32,8 +32,24 @@ window.Echo = new Echo({
     enabledTransports: ['ws', 'wss'],
 });
 
+// public channel
+// window.Echo.channel('new_user_channel')
+//     .listen('NewUserRegisterEvent',  // default event name space
+//     // .listen('App\\Events\\NewUserRegisterEvent',  // بخق ب
+//         (e) => { // e is the event data
+//             console.log(e.order);
+//             console.log('New User Registered:', e.user);
+//             // Get current count from the span
+//             const countElement = document.getElementById('notifCount');
+//             let currentCount = parseInt(countElement.textContent.trim()) || 0;
 
-window.Echo.channel('new_user_channel')
+//             // Increment count
+//             countElement.textContent = currentCount + 1;
+
+//         });
+
+// private channel
+window.Echo.private('new_user_channel')
     .listen('NewUserRegisterEvent',  // default event name space
         (e) => { // e is the event data
             console.log(e.order);
