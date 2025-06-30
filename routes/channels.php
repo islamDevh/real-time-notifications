@@ -1,5 +1,6 @@
 <?php
 
+use App\Broadcasting\NewUserChannel;
 use Illuminate\Support\Facades\Broadcast;
 
 /*
@@ -22,3 +23,7 @@ Broadcast::channel('new_user_channel', function ($user) {
     // return true; // or add your own logic, it should return true value
     return $user->type == 'super_admin'; // or add your own logic, it should return true value
 }, ['guards' => ['admin']]);
+
+
+// or separate class for channel
+// Broadcast::channel('new_user_channel', NewUserChannel::class,['guards' => ['admin']]);
