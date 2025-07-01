@@ -32,14 +32,13 @@ window.Echo = new Echo({
     enabledTransports: ['ws', 'wss'],
 });
 
-
 // public channel
-window.Echo.channel('new_user_channel_from_model_broadcasting')
+window.Echo.channel('new_user_channel')
     // .listen('NewUserRegisterEvent',  // default event name space
-    .listen('.user_created',  // to trigger create event from model broadcasting
+    .listen('.new_user_registered_event',  // for custom event name space
         (e) => { // e is the event data
             console.log(e.order);
-            console.log('New User Registered:', e);
+            console.log('New User Registered:', e.user);
             // Get current count from the span
             const countElement = document.getElementById('notifCount');
             let currentCount = parseInt(countElement.textContent.trim()) || 0;
@@ -49,9 +48,27 @@ window.Echo.channel('new_user_channel_from_model_broadcasting')
 
         });
 
+// public channel using Model broadcasting
 // window.Echo.channel('new_user_channel')
 //     // .listen('NewUserRegisterEvent',  // default event name space
 //     .listen('.new_user_registered_event',  // for custom event name space
+//         (e) => { // e is the event data
+//             console.log(e.order);
+//             console.log('New User Registered:', e);
+//             // Get current count from the span
+//             const countElement = document.getElementById('notifCount');
+//             let currentCount = parseInt(countElement.textContent.trim()) || 0;
+
+//             // Increment count
+//             countElement.textContent = currentCount + 1;
+
+//         });
+
+
+// public channel using Model broadcasting
+// window.Echo.channel('new_user_channel_from_model_broadcasting')
+//     // .listen('NewUserRegisterEvent',  // default event name space
+//     .listen('.user_created',  // to trigger create event from model broadcasting
 //         (e) => { // e is the event data
 //             console.log(e.order);
 //             console.log('New User Registered:', e);

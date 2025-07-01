@@ -14,7 +14,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use BroadcastsEvents, HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
+    // use BroadcastsEvents;
 
     /**
      * The attributes that are mass assignable.
@@ -94,28 +95,28 @@ class User extends Authenticatable
      * @param  string  $event
      * @return \Illuminate\Broadcasting\Channel|array
      */
-    public function broadcastOn(string $event) // to user name of action (create, update, delete, etc..) when listening to the event
-    {
-        return [new Channel('new_user_channel_from_model_broadcasting')];
-    }
+    // public function broadcastOn(string $event) // to user name of action (create, update, delete, etc..) when listening to the event
+    // {
+    //     return [new Channel('new_user_channel_from_model_broadcasting')];
+    // }
 
-    // broadcastAs
-    public function broadcastAs(string $event): string
-    {
-        return match ($event) {
-            'created' => 'user_created',
-            'updated' => 'user_updated',
-            'deleted' => 'user_deleted',
-            default => 'user_event',
-        };
-    }
+    // // broadcastAs
+    // public function broadcastAs(string $event): string
+    // {
+    //     return match ($event) {
+    //         'created' => 'user_created',
+    //         'updated' => 'user_updated',
+    //         'deleted' => 'user_deleted',
+    //         default => 'user_event',
+    //     };
+    // }
 
-    // specify the data you want to broadcast
-    public function broadcastWith(string $event): array
-    {
-        return match ($event) {
-            'created' => ['user_id' => $this->id],
-            default => ['model' => $this],
-        };
-    }
+    // // specify the data you want to broadcast
+    // public function broadcastWith(string $event): array
+    // {
+    //     return match ($event) {
+    //         'created' => ['user_id' => $this->id],
+    //         default => ['model' => $this],
+    //     };
+    // }
 }
