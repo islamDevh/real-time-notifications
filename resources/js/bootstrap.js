@@ -31,22 +31,21 @@ window.Echo = new Echo({
     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
     enabledTransports: ['ws', 'wss'],
 });
-
 // public channel
-// window.Echo.channel('new_user_channel')
-//     .listen('NewUserRegisterEvent',  // default event name space
-//     // .listen('App\\Events\\NewUserRegisterEvent',  // بخق ب
-//         (e) => { // e is the event data
-//             console.log(e.order);
-//             console.log('New User Registered:', e.user);
-//             // Get current count from the span
-//             const countElement = document.getElementById('notifCount');
-//             let currentCount = parseInt(countElement.textContent.trim()) || 0;
+window.Echo.channel('new_user_channel')
+    .listen('NewUserRegisterEvent',  // default event name space
+    // .listen('App\\Events\\NewUserRegisterEvent',  // بخق ب
+        (e) => { // e is the event data
+            console.log(e.order);
+            console.log('New User Registered:', e.user);
+            // Get current count from the span
+            const countElement = document.getElementById('notifCount');
+            let currentCount = parseInt(countElement.textContent.trim()) || 0;
 
-//             // Increment count
-//             countElement.textContent = currentCount + 1;
+            // Increment count
+            countElement.textContent = currentCount + 1;
 
-//         });
+        });
 
 // private channel
 // window.Echo.private('new_user_channel')
@@ -63,26 +62,20 @@ window.Echo = new Echo({
 
 //         });
 
-// PRESENCE CHANNEL
-window.Echo.join(`admin_room_channel`)
-    .here((users) => {
-        console.log("here :");
-        console.log(users);
-        $.each(users, function (index, user) {
-            $("#onlineAdmins").append($("<li>").text(user.name));
-        });
-    })
-    .joining((user) => {
-        console.log("joining :");
-        console.log(user);
-        $("#onlineAdmins").append($("<li>").text(user.name));
-    })
-    .leaving((user) => {
-        console.log("leaving :");
-        console.log(user);
-        $("#onlineAdmins li:contains('" + user.name + "')").remove();
-    })
-    .error((error) => {
-        console.log("error :");
-        console.error(error);
-    });
+// presence channel
+// window.Echo.join('admin_room_channel')
+//     .here((users) => { // This callback is triggered when the user joins the channel and receives the list of users already in the channel
+//         console.log('here Users currently in the channel:', users);
+//     })
+//     .joining((user) => { // This callback is triggered when a new user joins the channel
+//         console.log('A new user has joined:', user);
+
+
+//     })
+//     .leaving((user) => {
+//         console.log('A user has leaving:', user);
+
+//     })
+//     .error((error) => { // This callback is triggered when there is an error joining the channel
+//         console.error('Error joining the channel:', error);
+//     });
