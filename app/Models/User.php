@@ -109,4 +109,13 @@ class User extends Authenticatable
             default => 'user_event',
         };
     }
+
+    // specify the data you want to broadcast
+    public function broadcastWith(string $event): array
+    {
+        return match ($event) {
+            'created' => ['user_id' => $this->id],
+            default => ['model' => $this],
+        };
+    }
 }
