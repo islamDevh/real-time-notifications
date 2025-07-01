@@ -98,4 +98,15 @@ class User extends Authenticatable
     {
         return [new Channel('new_user_channel_from_model_broadcasting')];
     }
+
+    // broadcastAs
+    public function broadcastAs(string $event): string
+    {
+        return match ($event) {
+            'created' => 'user_created',
+            'updated' => 'user_updated',
+            'deleted' => 'user_deleted',
+            default => 'user_event',
+        };
+    }
 }

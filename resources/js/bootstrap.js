@@ -36,7 +36,7 @@ window.Echo = new Echo({
 // public channel
 window.Echo.channel('new_user_channel_from_model_broadcasting')
     // .listen('NewUserRegisterEvent',  // default event name space
-    .listen('.UserCreated',  // to trigger create event from model broadcasting
+    .listen('.user_created',  // to trigger create event from model broadcasting
         (e) => { // e is the event data
             console.log(e.order);
             console.log('New User Registered:', e);
