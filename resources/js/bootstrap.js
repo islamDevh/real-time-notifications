@@ -19,7 +19,7 @@ import Echo from 'laravel-echo';
 
 import Pusher from 'pusher-js';
 window.Pusher = Pusher;
-console.log("hello from pusher", Pusher);
+console.log("hello from bootstrap.js");
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
@@ -49,16 +49,40 @@ window.Echo = new Echo({
 //         });
 
 // private channel
-window.Echo.private('new_user_channel')
-    .listen('NewUserRegisterEvent',  // default event name space
-        (e) => { // e is the event data
-            console.log(e.order);
-            console.log('New User Registered:', e.user);
-            // Get current count from the span
-            const countElement = document.getElementById('notifCount');
-            let currentCount = parseInt(countElement.textContent.trim()) || 0;
+// window.Echo.private('new_user_channel')
+//     .listen('NewUserRegisterEvent',  // default event name space
+//         (e) => { // e is the event data
+//             console.log(e.order);
+//             console.log('New User Registered:', e.user);
+//             // Get current count from the span
+//             const countElement = document.getElementById('notifCount');
+//             let currentCount = parseInt(countElement.textContent.trim()) || 0;
 
-            // Increment count
-            countElement.textContent = currentCount + 1;
+//             // Increment count
+//             countElement.textContent = currentCount + 1;
 
+//         });
+
+// PRESENCE CHANNEL
+window.Echo.join(`admin_room_channel`)
+    .here((users) => {
+        console.log("here :");
+        console.log(users);
+        $.each(users, function (index, user) {
+            $("#onlineAdmins").append($("<li>").text(user.name));
         });
+    })
+    .joining((user) => {
+        console.log("joining :");
+        console.log(user);
+        $("#onlineAdmins").append($("<li>").text(user.name));
+    })
+    .leaving((user) => {
+        console.log("leaving :");
+        console.log(user);
+        $("#onlineAdmins li:contains('" + user.name + "')").remove();
+    })
+    .error((error) => {
+        console.log("error :");
+        console.error(error);
+    });
