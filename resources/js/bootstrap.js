@@ -23,12 +23,13 @@ console.log("hello from bootstrap.js");
 
 // when i use websocket
 window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: 'MyCustomPusherKey',
+    broadcaster: "pusher",
+    key: "MyCustomPusherKey",
     wsHost: window.location.hostname,
     wsPort: 6001,
     forceTLS: false,
     disableStats: true,
+    cluster: "mt1",
 });
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',

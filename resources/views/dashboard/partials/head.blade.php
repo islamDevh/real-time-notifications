@@ -26,27 +26,37 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/css/app-dark.css" id="darkTheme" disabled>
     @stack('styles')
 
-    {{-- <script src="https://js.pusher.com/8.4.0/pusher.min.js"></script>
+
+    {{-- <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
     <script>
+        // Enable pusher logging - don't include this in production
         Pusher.logToConsole = false;
 
-        var pusher = new Pusher('{{ env('PUSHER_APP_KEY') }}', {
-            cluster: 'ap2'
+        var pusher = new Pusher("{{ env('PUSHER_APP_KEY') }}", {
+            cluster: 'mt1'
         });
 
         var channel = pusher.subscribe('new_user_channel');
 
-        channel.bind('App\\Events\\NewUserRegisterEvent', function(data) {
-            console.log("New notification received:", data);
-
-            // Get current count from the span
-            const countElement = document.getElementById('notifCount');
-            let currentCount = parseInt(countElement.textContent.trim()) || 0;
-
-            // Increment count
-            countElement.textContent = currentCount + 1;
-
+        channel.bind('App\\Events\\NewUserRegisteredEvent', function(data) {
+            console.log(data['message']);
+            $(".notificationsIcon").load(" .notificationsIcon > *");
+            $("#notificationsModal").load(" #notificationsModal > *");
         });
     </script> --}}
-    @vite('resources/js/bootstrap.js')
+
+    @vite('resources/js/app.js')
+
+    {{-- <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        console.log('hello from head with laravel mix');
+        window.Echo.channel(`new_user_channel`).listen(
+            ".App\\Events\\NewUserRegisteredEvent",
+            (e) => {
+                console.log(e);
+                $(".notificationsIcon").load(" .notificationsIcon > *");
+                $("#notificationsModal").load(" #notificationsModal > *");
+            }
+        );
+    </script> --}}
 </head>
