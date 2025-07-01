@@ -27,4 +27,19 @@ class NewUserRegisterEvent implements ShouldBroadcast
             new Channel('new_user_channel'),
         ];
     }
+
+    public function broadcastAs(): string
+    {
+        return 'new_user_registered_event'; // name of the event (optional) insted of using the class name to listen to the event
+    }
+
+    public function broadcastWith(): array
+    {
+        return ['user_id' => $this->user->id]; // specify the data you want to broadcast
+    }
+
+    // public function broadcastWhen(): bool
+    // {
+    //     return $this->user->age > 25; // condition to broadcast the event, for example
+    // }
 }

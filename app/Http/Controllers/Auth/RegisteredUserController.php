@@ -73,6 +73,11 @@ class RegisteredUserController extends Controller
         event(new NewUserRegisterEvent($user));
         // or
         // NewUserRegisterEvent::dispatch();
+
+
+        // Model Broadcasting
+        $user->broadcastChannel();
+
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);

@@ -3,6 +3,9 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Broadcasting\Channel;
+use Illuminate\Database\Eloquent\BroadcastsEvents;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -11,7 +14,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use BroadcastsEvents, HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -82,5 +85,17 @@ class User extends Authenticatable
                 }
             },
         );
+    }
+
+
+    /**
+     * Get the channels that model events should broadcast on.
+     *
+     * @param  string  $event
+     * @return \Illuminate\Broadcasting\Channel|array
+     */
+    public function broadcastOn(string $event) // to user name of action (create, update, delete, etc..) when listening to the event
+    {
+        return [new Channel('new_user_channel_from_model_broadcasting')];
     }
 }
