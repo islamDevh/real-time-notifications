@@ -1,14 +1,14 @@
-name: 01 Basics First Workflow # the name of the workflow
+# name: 01 Basics First Workflow # the name of the workflow
 
-on: # the events will trigger
-  workflow_dispatch # run the workflow manually
+# on: # the events will trigger
+#   workflow_dispatch # run the workflow manually
 
-jobs:
-  print-hello-world: # the name of the job
-    runs-on: ubuntu-latest
-    steps: # steps the job will run
-      - name: Print Hello World # name of the step
-        run: echo "Hello World"
+# jobs:
+#   print-hello-world: # the name of the job
+#     runs-on: ubuntu-latest
+#     steps: # steps the job will run
+#       - name: Print Hello World # name of the step
+#         run: echo "Hello World"
 
-      - name: step 2
-        run: echo "Hello World 2"
+#       - name: step 2
+#         run: echo "Hello World 2"

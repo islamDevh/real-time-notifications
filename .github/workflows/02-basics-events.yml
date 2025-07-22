@@ -1,10 +1,10 @@
-name: 02 Basics Events
+# name: 02 Basics Events
 
-on: [push, pull_request] # multi events
+# on: [push, pull_request] # multi events
 
-jobs:
-  print-hello-world:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print Hello World
-        run: echo "Hello World"
+# jobs:
+#   print-hello-world:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Print Hello World
+#         run: echo "Hello World"
