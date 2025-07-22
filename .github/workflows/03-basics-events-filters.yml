@@ -1,34 +1,34 @@
-# name: 03 Basics Events Filters
+name: 03 Basics Events Filters
 
-# on: 
-#   # pull_request:
-#   #   types: [closed, reopened]
-#     # types:
-#     #   - closed
-#     #   - reopened
-#   push:
-#     # branches:
-#     #   - master
-#     #   - main
-#     # branches-ignore:
-#     #   - master
-#     #   - main
-#     # tags:
-#     #   - v2
-#     # tags-ignore:
-#     #   - v2
-#     paths: # the files will run the workflow if changed ont it
-#       # - 'routes/web.php'
-#       # - 'routes/*.php' # all files only in routes folder
-#       - 'routes/**.php' # all files and folders in routes folder
+on: 
+  # pull_request:
+  #   types: [closed, reopened]
+    # types:
+    #   - closed
+    #   - reopened
+  push:
+    # branches:
+    #   - master
+    #   - main
+    # branches-ignore:
+    #   - master
+    #   - main
+    # tags:
+    #   - v2
+    # tags-ignore:
+    #   - v2
+    paths: # the files will run the workflow if changed ont it
+      # - 'routes/web.php'
+      # - 'routes/*.php' # all files only in routes folder
+      - 'routes/**.php' # all files and folders in routes folder
 
 
-#     # paths-ignore: # the files will not run the workflow if changed ont it
-#     #   - 'routes/web.php'
+    # paths-ignore: # the files will not run the workflow if changed ont it
+    #   - 'routes/web.php'
 
-# jobs:
-#   print-hello-world:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Print Hello World
-#         run: echo "Hello World"
+jobs:
+  print-hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Hello World
+        run: echo "Hello World"
