@@ -4,8 +4,8 @@ on:
   # pull_request:
   #   types: [closed, reopened]
     # types:
-    #   - closed
-    #   - reopened
+    #   - closed # when the pull request is closed
+    #   - reopened # when the pull request is reopened
   push:
     # branches:
     #   - master

@@ -1,5 +1,5 @@
 name: 06 Basics Context
-run-name: ${{ github.actor }} Explaining context data - Try Number ${{ github.run_number }}
+run-name: ${{ github.actor }} Explaining context data - Try Number ${{ github.run_number }} # custom name workflow when run
 
 on: 
   workflow_dispatch
@@ -11,8 +11,9 @@ jobs:
       - name: Print Context Data
         # run: echo ${{ github }}
         # run: echo ${{ github.actor }}
+        # or this syntax
         # run: echo ${{ github['actor'] }}
         # run: echo ${{ github.event_name }}
         run: echo ${{ job.status }}
-        # run: echo ${{ toJson(github) }}
+        # run: echo ${{ toJson(github) }} // to see all data in the guthub object 
         # run: echo ${{ toJson(github.event) }}
