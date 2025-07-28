@@ -10,7 +10,9 @@ jobs:
     steps:
       - name: Simulate testing failure
         run: exit 1  # do failure to test issue creation
-      
+
+
+        # if failure create a new issue using endpoint github that create an issue
       - name: Open new issue
         if: failure()
         run: |
