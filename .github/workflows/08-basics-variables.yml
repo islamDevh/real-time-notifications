@@ -1,0 +1,30 @@
+name: 08 Basics Variables
+run-name: ${{ github.actor }} Explaining Variables - Try Number ${{ github.run_number }}
+
+# 👇 Global environment variables - available in all jobs and all steps unless overridden
+env:
+  MY_NAME: 'Mahmoud Anwar'
+
+on: 
+  workflow_dispatch
+
+jobs:
+  print-variables:
+    runs-on: ubuntu-latest
+
+    # 👇 Job-level environment variables - available in all steps in this job
+    env:
+      MY_NAME2: 'Mahmoud Anwar 2'
+
+    steps:
+      - name: Print Variables
+        # 👇 Step-level environment variables - only available in this specific step
+        env:
+           MY_NAME3: 'Mahmoud Anwar 3'
+
+        # 👇 Accessing global env variable
+        run: echo ${{ env.MY_NAME }}   # Outputs: Mahmoud Anwar
+
+      - name: Print Variables 2
+        run: echo ${{ env.MY_NAME2 }}  # Outputs: Mahmoud Anwar 2 (job-level)
+

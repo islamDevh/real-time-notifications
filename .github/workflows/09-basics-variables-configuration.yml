@@ -1,0 +1,18 @@
+name: 09 Basics Variables - Configuration
+run-name: ${{ github.actor }} Explaining Variables - Try Number ${{ github.run_number }}
+
+on: 
+  workflow_dispatch
+
+jobs:
+  print-variables:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Variables
+        run: echo ${{ vars.MY_CONFIG_VALUE }} # MY_CONFIG_VALUE is set in the github repository settings
+      
+      - name: Print Secrets
+        run: echo ${{ secrets.MY_CREDENTIAL_PASSWORD }} # MY_CREDENTIAL_PASSWORD is set in the github repository settings
+      
+      - name: Print Default Variables
+        run: env
