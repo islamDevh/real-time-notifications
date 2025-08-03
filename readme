@@ -1,0 +1,4 @@
+# 1. clone the project
+git clone ....
+
+docker compose up -d --build

@@ -1,0 +1,32 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    container_name: laravel-app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    ports:
+      - 8000:80
+    depends_on:
+      - db
+    entrypoint: [ "sh", "/var/www/docker/php/docker-entrypoint.sh" ]
+
+  db:
+    image: mysql:8.0
+    container_name: laravel-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: secret123
+      MYSQL_DATABASE: realtime
+      MYSQL_USER: root
+      MYSQL_PASSWORD: secret123
+    ports:
+      - "3307:3306"  
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
