@@ -12,7 +12,7 @@ services:
       - 8000:80
     depends_on:
       - db
-    entrypoint: [ "sh", "/var/www/docker/php/docker-entrypoint.sh" ]
+    entrypoint: [ "sh", "/var/www/docker/php/docker-entrypoint.sh" ] # custom script to start commands in the container
 
   db:
     image: mysql:8.0
